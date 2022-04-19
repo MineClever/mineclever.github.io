@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>MineClever&#39;s Blog</title>
+    <link>http://mine-clever.art/</link>
+    
+    <atom:link href="http://mine-clever.art/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>爱写啥写啥</description>
+    <pubDate>Tue, 19 Apr 2022 16:31:38 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Hello Self</title>
+      <link>http://mine-clever.art/2022/04/19/home/</link>
+      <guid>http://mine-clever.art/2022/04/19/home/</guid>
+      <pubDate>Tue, 19 Apr 2022 14:39:54 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;用来记录一些琐事的内容&quot;&gt;&lt;a href=&quot;#用来记录一些琐事的内容&quot; class=&quot;headerlink&quot; title=&quot;用来记录一些琐事的内容.&quot;&gt;&lt;/a&gt;用来记录一些琐事的内容.&lt;/h1&gt;&lt;p&gt;摆烂躺平人的破事水&lt;/p&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="用来记录一些琐事的内容"><a href="#用来记录一些琐事的内容" class="headerlink" title="用来记录一些琐事的内容."></a>用来记录一些琐事的内容.</h1><p>摆烂躺平人的破事水</p><span id="more"></span><h2 id="主要记录内容"><a href="#主要记录内容" class="headerlink" title="主要记录内容?"></a>主要记录内容?</h2><p>关于 技术, 美术, 游戏技术 , 光学, 摄影, 色彩科学, 民间杂谈 等</p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>http://mine-clever.art/2022/04/19/home/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>
