@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>水文指南</title>
+      <link href="/2022/04/20/Water-01/"/>
+      <url>/2022/04/20/Water-01/</url>
+      
+        <content type="html"><![CDATA[<h1 id="在Hexo下水文章"><a href="#在Hexo下水文章" class="headerlink" title="在Hexo下水文章"></a>在Hexo下水文章</h1><p>免得时间长了没水, 不知道怎么水</p><span id="more"></span>   <h2 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h2><p>在hexo博客目录下，进入Git Bash命令窗口中，输入以下命令: </p><p><code> $ hexo new &quot;Water_01&quot;</code></p><ul><li>添加一篇水文章</li></ul><h1 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h1><ul><li>文件的开头是属性，采用统一的yaml格式，用三条短横线分隔</li></ul><h3 id="文章标题："><a href="#文章标题：" class="headerlink" title="文章标题："></a>文章标题：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: 在这里</span><br><span class="line">date: 好日子</span><br><span class="line">tags:</span><br><span class="line">- Blog           //多个标签可以这样添加</span><br><span class="line">- hexo</span><br><span class="line">categories: web前端</span><br></pre></td></tr></table></figure><h3 id="添加置顶"><a href="#添加置顶" class="headerlink" title="添加置顶:"></a>添加置顶:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;   </span><br></pre></td></tr></table></figure><h2 id="发水文章"><a href="#发水文章" class="headerlink" title="发水文章"></a>发水文章</h2><p>在Hexo目录下执行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure><h2 id="额外的插件"><a href="#额外的插件" class="headerlink" title="额外的插件"></a>额外的插件</h2><h4 id="在博文中添加图片-1"><a href="#在博文中添加图片-1" class="headerlink" title="在博文中添加图片(1)"></a>在博文中添加图片(1)</h4><ol><li><p>在hexo目录下，安装插件：</p><p> <code>npm install hexo-asset-image --save</code></p></li><li><p>在hexo\source 目录下新建一个img文件夹，把图片放置在里面</p></li><li><p>在Water_xx.md文件中引用图片:</p><p> <code> ![header]( img/header.jpg)</code></p></li></ol><h4 id="在博文中添加图片-2"><a href="#在博文中添加图片-2" class="headerlink" title="在博文中添加图片(2)"></a>在博文中添加图片(2)</h4><ol><li><p>在全局配置文件<strong>hexo&#x2F;_config.yml</strong> 中将<u>post_asset_folder</u>设置为<u>true</u></p></li><li><p>创建文章（在创建的时候，会在hexo&#x2F;source&#x2F;_post目录下，生成一个XXX.md文件和一个XXX的文件夹）</p><p> <code>hexo new &quot;XXX&quot;</code></p></li><li><p>把XXX这个博文需要展示的图片放在XXX文件夹目录下</p></li><li><p>在XXX.md文件中引入图片的方式：</p><p> <code>&#123;% asset_img example.jpg This is an example image %&#125;</code></p></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 破事水 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello Self</title>
       <link href="/2022/04/19/home/"/>
       <url>/2022/04/19/home/</url>
