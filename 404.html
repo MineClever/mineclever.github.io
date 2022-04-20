@@ -1,0 +1,18 @@
+<p>Jump 404<br> <span id="timeout">5</span></p>
+<script>
+let countTime = 5;
+
+function count() {
+
+  document.getElementById('timeout').textContent = countTime;
+  countTime -= 1;
+  if(countTime === 0){
+    location.href = 'https://mine-clever.art/';
+  }
+  setTimeout(() => {
+    count();
+  }, 1000);
+}
+
+count();
+</script>
