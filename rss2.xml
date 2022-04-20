@@ -9,8 +9,33 @@
     <atom:link href="http://mine-clever.art/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>爱写啥写啥</description>
-    <pubDate>Wed, 20 Apr 2022 11:38:46 GMT</pubDate>
+    <pubDate>Wed, 20 Apr 2022 13:39:57 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>在Windows環境下的HDR使用</title>
+      <link>http://mine-clever.art/2022/04/20/HDR-NV-Windows/</link>
+      <guid>http://mine-clever.art/2022/04/20/HDR-NV-Windows/</guid>
+      <pubDate>Wed, 20 Apr 2022 13:22:03 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;用於記錄一般情況下, 如何在Windows 作業系統使用HDR&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul><li>用於記錄一般情況下, 如何在Windows 作業系統使用HDR</li></ul><span id="more"></span>  <h1 id="0xFF"><a href="#0xFF" class="headerlink" title="0xFF"></a>0xFF</h1><h3 id="使用前提"><a href="#使用前提" class="headerlink" title="使用前提:"></a>使用前提:</h3><ol><li>有用HDR顯示器</li><li>使用Windows 10 2004以上版本的作業系統</li><li>使用 Nvidia 顯示卡, 並安裝 2020年以後的驅動程式</li></ol><h3 id="顯示器的要求"><a href="#顯示器的要求" class="headerlink" title="顯示器的要求"></a>顯示器的要求</h3><ul><li>請注意需要支持原生10bit輸出</li><li>最少需要VESA HDR400認證</li><li>至少要滿足 100% Rec709&#x2F;sRGB 的色彩空間</li></ul><h1 id="0xFE"><a href="#0xFE" class="headerlink" title="0xFE"></a>0xFE</h1><p><img data-src="/img/HDR_NV_WIN/image-20220420213328233.png" alt="覆蓋參考模式"></p><p>對於Nvidia顯卡, 需要移步至 [顯示-&gt;調整桌面色彩-&gt;色彩精確模式-&gt;覆蓋參考模式] 將該選項打開</p><p>即可完全移除作業系統對Gamma表的加載</p><p>如果需要完全的色彩準確性,得購買Aja IO4k,進行硬件化的色彩重映射</p><p>只是追求白點準確度,只要將白點平衡到D65(6500K)即可</p><h1 id="0xFD"><a href="#0xFD" class="headerlink" title="0xFD"></a>0xFD</h1><p><img data-src="/img/HDR_NV_WIN/image-20220420213747413.png" alt="image-20220420213747413"></p><p>進入HDR管理, 將[HDR&#x2F;SDR亮度平衡]拉滿</p><ul><li>請務必注意在調整前把這條拖滿,這很重要</li></ul><p>因為色彩轉換的過程已經被nvidia pass</p><p>那麼最大物理亮度請直接調整顯示器亮度即可(有點像調光圈大小的味道)</p><p>如果需要兼顧顯示器的SDR亮度,再去調整Windows內的亮度調整(SDR的參照亮度為 200nit).</p><p>目前此方法可以正確適配顯示hdr與sdr內容</p><h1 id="0xFC"><a href="#0xFC" class="headerlink" title="0xFC"></a>0xFC</h1><p>這麽做的理由:</p><ul><li>nvidia只把向顯卡報告了hdr的內容做hdr meta信號輸出</li><li>不報告的直接不做任何色彩轉換拋出去(會導致icc的 gamma表加載不生效)<ul><li>如果仍然需要photoshop等軟件的色彩管理正確工作<ul><li>應當用當前顯示器的白點和gamma做profile(即把所有修正部分塞進lut)</li><li>然後自己手指配置給系統就好了</li></ul></li></ul></li></ul>]]></content:encoded>
+      
+      
+      
+      <category domain="http://mine-clever.art/tags/HDR/">HDR</category>
+      
+      <category domain="http://mine-clever.art/tags/Windows/">Windows</category>
+      
+      
+      <comments>http://mine-clever.art/2022/04/20/HDR-NV-Windows/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Unreal引擎資產規範</title>
