@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Anysocks 使用</title>
+      <link href="/2022/04/23/anysocksUsage/"/>
+      <url>/2022/04/23/anysocksUsage/</url>
+      
+        <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>一個實用而高效的任意進程代理工具, 支持TCP+UDP , 不過僅支持Windows</p><ul><li>簡要記錄下其使用方法</li><li>Anysocks版本 1.0.10 openbeta</li><li>官方地址 : <a href="https://anysocks.net/">https://anysocks.net/</a></li></ul><span id="more"></span>   <h1 id="0xFF-優點"><a href="#0xFF-優點" class="headerlink" title="0xFF 優點"></a>0xFF 優點</h1><ul><li><p>可以讓任何支持Socks代理! 不管軟件願不願意(x</p></li><li><p>不是全局代理 , 卻有全局代理的體驗!</p></li><li><p>支持UDP , 可以打游戲!</p></li><li><p>界面友好 , 自帶中文 , 一看就是華人搞得(x</p></li><li><p>支持簡單暴力代理的同時, 還支持高級路由配置 , 支持GeoIP等</p></li><li><p>支持DOH! 這個非常棒!</p></li></ul><h1 id="0xFE-缺點"><a href="#0xFE-缺點" class="headerlink" title="0xFE 缺點"></a>0xFE 缺點</h1><ul><li>官方無提供有效的幫助文檔, 需要自己摸索 (於是便有了此文)</li><li>需要自己一個個添加配置, 略微繁瑣</li><li>TCP代理功能免費,確實能完美替代Proxifier. 不過UDP部分需要花錢購買授權.<ul><li>好在價格并不貴</li></ul></li></ul><h1 id="0xFD-配置服務器"><a href="#0xFD-配置服務器" class="headerlink" title="0xFD 配置服務器"></a>0xFD 配置服務器</h1><h2 id="0b00-簡單添加服務器配置"><a href="#0b00-簡單添加服務器配置" class="headerlink" title="0b00 簡單添加服務器配置"></a>0b00 簡單添加服務器配置</h2><p><img data-src="/../img/anysocksUsage/image-20220423160736268.png" alt="伺服器配置頁面"></p><ul><li><p>在左側堆棧欄中, 找到 <strong>創建新伺服器</strong> 可以添加一個新的本地Socks接入伺服器</p></li><li><p>由於可以支持多個Socks接入伺服器 , 可以按照自己的需求 添加多個 伺服器 , 以便在規則中分類定義</p></li></ul><h2 id="0b01-檢查連接-amp-amp-保存"><a href="#0b01-檢查連接-amp-amp-保存" class="headerlink" title="0b01 檢查連接 &amp;&amp; 保存"></a>0b01 檢查連接 &amp;&amp; 保存</h2><ul><li>添加本地伺服器地址與端口后, 可以通過 <strong>檢查伺服器連接性</strong> 來確認是否已經聯通</li></ul><p><img data-src="/../img/anysocksUsage/image-20220423161152644.png" alt="image-20220423161152644"></p><ul><li>全部顯示小綠勾, 即表明當前伺服器已經完美聯通啦!</li><li>當然記得點擊右上方的 <strong>保存</strong> 按鈕 , 否則是不生效的!</li></ul><h1 id="0xFC-添加規則"><a href="#0xFC-添加規則" class="headerlink" title="0xFC 添加規則"></a>0xFC 添加規則</h1><ul><li>規則配置擁有多種靈活性, 非常强大</li></ul><h2 id="0b00-創建簡單規則"><a href="#0b00-創建簡單規則" class="headerlink" title="0b00 創建簡單規則"></a>0b00 創建簡單規則</h2><p><img data-src="/../img/anysocksUsage/image-20220423161923676.png" alt="image-20220423161923676"></p><ul><li>在左側堆棧欄中,點擊 <strong>規則</strong> ,然後 <strong>創建新規則</strong></li><li>在 <strong>網路配置 - &gt;代理伺服器</strong> 中選擇 之前添加的伺服器</li></ul><p><img data-src="/../img/anysocksUsage/image-20220423162304143.png" alt="image-20220423162304143"></p><ul><li>在 <strong>程式配置</strong> 欄目 中, 可以調整 <strong>程式攔截配置</strong><ul><li>默認沒有啓用任何選項, 確實有些不便 , 第一次使用的時候以爲程式無效</li><li>自動代理子進程 : 從被代理的進程啓動的子進程也會被代理 , 對於游戲程式來説很必要! </li><li>自動匹配並代理運行中的進程 : 可以代理已經在運行中的程式. 一般來説還是點上吧!</li></ul></li><li>接下來很重要的部分, 我們還需要添加 需要被代理的程式!! 點擊 <strong>程式規則</strong>進行進一步配置</li></ul><p><img data-src="/../img/anysocksUsage/image-20220423162813819.png" alt="image-20220423162813819"></p><ul><li>點擊 <strong>添加</strong> 按鈕, 即可添加一條新的規則</li></ul><p><img data-src="/../img/anysocksUsage/image-20220423163009757.png" alt="image-20220423163009757"></p><ul><li><p>如果只是想要代理特定路徑下的程式 , 使用 瀏覽 按鈕 獲得程式的絕對路徑 , 然後點擊 <strong>添加</strong> 即可</p></li><li><p>如果先用使用更加複雜的路徑配置方法,可以利用通配符 , 在下文再作詳細説明</p></li><li><p>當然, 添加完成規則后 , 記得點擊 <strong>保存</strong> 按鈕!</p></li></ul><h1 id="0xFB-運行代理時"><a href="#0xFB-運行代理時" class="headerlink" title="0xFB 運行代理時"></a>0xFB 運行代理時</h1><h2 id="0b00-啓動代理"><a href="#0b00-啓動代理" class="headerlink" title="0b00 啓動代理"></a>0b00 啓動代理</h2><ul><li><p>從左側堆棧欄中,回到 <strong>主頁</strong></p></li><li><p>點擊 <strong>啓動</strong> 按鈕!!!</p></li><li><p>當按鈕變成紅色, 並出現統計圖表 即代表運行成功</p></li></ul><p><img data-src="/../img/anysocksUsage/image-20220423163531443.png" alt="image-20220423163531443"></p><h2 id="0b01-停止-amp-amp-暫停"><a href="#0b01-停止-amp-amp-暫停" class="headerlink" title="0b01 停止 &amp;&amp; 暫停"></a>0b01 停止 &amp;&amp; 暫停</h2><ul><li>停止 : 停止代理的運行! 切換回無代理的狀態</li><li>暫停 : 不再代理規則中的新進程 , 但是不停止已經被代理進程的代理行爲 . 對於臨時進行網絡切換非常有用!</li></ul><h1 id="進階規則的配置"><a href="#進階規則的配置" class="headerlink" title="進階規則的配置"></a>進階規則的配置</h1><ul><li>未完, 續待…</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 水 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 破事水 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Cpp搞FbxSDK的坑</title>
       <link href="/2022/04/22/cppFbx/"/>
       <url>/2022/04/22/cppFbx/</url>
