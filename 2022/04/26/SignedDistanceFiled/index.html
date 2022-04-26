@@ -21,17 +21,25 @@
     var CONFIG = {"hostname":"mine-clever.art","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="想到什麽寫什麽, 隨筆而已">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MineClever&#39;s Blog">
-<meta property="og:url" content="http://mine-clever.art/tags/fbx/index.html">
+  <meta name="description" content="摘要本文主要用於記錄有向距離場的資料  未完…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有向距離場 Signed Distance Filed">
+<meta property="og:url" content="http://mine-clever.art/2022/04/26/SignedDistanceFiled/index.html">
 <meta property="og:site_name" content="MineClever&#39;s Blog">
-<meta property="og:description" content="想到什麽寫什麽, 隨筆而已">
+<meta property="og:description" content="摘要本文主要用於記錄有向距離場的資料  未完…">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://mine-clever.art/img/SignedDistanceFiled/20150416180332929.bmp">
+<meta property="og:image" content="http://mine-clever.art/img/SignedDistanceFiled/20150416180042220.bmp">
+<meta property="og:image" content="http://mine-clever.art/img/SignedDistanceFiled/20150416180603781.bmp">
+<meta property="article:published_time" content="2022-04-26T14:10:27.000Z">
+<meta property="article:modified_time" content="2022-04-26T14:31:23.203Z">
 <meta property="article:author" content="Mine Clever">
+<meta property="article:tag" content="SDF">
+<meta property="article:tag" content="距離場">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mine-clever.art/img/SignedDistanceFiled/20150416180332929.bmp">
 
-<link rel="canonical" href="http://mine-clever.art/tags/fbx/">
+<link rel="canonical" href="http://mine-clever.art/2022/04/26/SignedDistanceFiled/">
 
 
 <script id="page-configurations">
@@ -39,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>標籤: fbx | MineClever's Blog</title>
+  <title>有向距離場 Signed Distance Filed | MineClever's Blog</title>
   
 
 
@@ -192,51 +200,151 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">fbx
-          <small>標籤</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://mine-clever.art/2022/04/26/SignedDistanceFiled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/MyHeadIcon.jpg">
+      <meta itemprop="name" content="Mine Clever">
+      <meta itemprop="description" content="想到什麽寫什麽, 隨筆而已">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MineClever's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          有向距離場 Signed Distance Filed
+        </h1>
+
+        <div class="post-meta">
+          
+            
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-04-26 22:10:27 / 修改時間：22:31:23" itemprop="dateCreated datePublished" datetime="2022-04-26T22:10:27+08:00">2022-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B3%87%E6%96%99/" itemprop="url" rel="index"><span itemprop="name">資料</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文主要用於記錄<strong>有向距離場</strong>的資料</p>
+<ul>
+<li>未完…</li>
+</ul>
+<span id="more"></span>   
+
+
+
+<h1 id="收集的距離場算法與實現"><a href="#收集的距離場算法與實現" class="headerlink" title="收集的距離場算法與實現"></a>收集的距離場算法與實現</h1><h2 id="欧几里得距离转换（EDT）算法"><a href="#欧几里得距离转换（EDT）算法" class="headerlink" title="欧几里得距离转换（EDT）算法"></a>欧几里得距离转换（EDT）算法</h2><ul>
+<li>Ref : <a target="_blank" rel="noopener" href="https://blog.csdn.net/tianwaifeimao/article/details/45078661">https://blog.csdn.net/tianwaifeimao/article/details/45078661</a></li>
+</ul>
+<p><em><strong>*0 前言*</strong></em> </p>
+<p>欧几里得距离转换 (Euclidean Distance Transform, EDT) 简单的说即是以最常用的欧几里得距离作为</p>
+<p>距离度量，找到每一个前景点到最近的背景点之间的距离。文中提及所有的算法中，均是将二维图片</p>
+<p>转为两个一维向量的方式进行。</p>
+<p><u>一些基本定义：</u></p>
+<ul>
+<li><p>背景点为 0，黑色，为感兴趣点，Voronioi elements，sites；</p>
+</li>
+<li><p>前景点为 1：白色；</p>
+</li>
+<li><p>VR:  某一背景点的 VR 指的前景点集合，这些前景点到此背景点的距离比到其他背景点距离都要短。</p>
+</li>
+<li><p>VS：某一前景点的 VS 指的是背景点的集合，这些背景点到此前景点距离比到其他前景点距离都要短。</p>
+</li>
+</ul>
+<p><em><strong>1. Saito 的算法：</strong></em></p>
+<p><strong>step1：1-D Transformation</strong></p>
+<p>上到下，计算每一行中前景点到<strong>本行</strong>背景点距离最近的平方，得到中间结果 G；<strong>公式如下：</strong></p>
+<p><img data-src="/../img/SignedDistanceFiled/20150416180332929.bmp" alt="公式"></p>
+<p>如下图 :</p>
+<p>(a) 为<strong>原图</strong></p>
+<p>(b) 为 <strong>同一行的</strong>距离平方图, 	即 G</p>
+<p><img data-src="/../img/SignedDistanceFiled/20150416180042220.bmp" alt="圖像(a), (b)"></p>
+<p><strong>step2：2-D Transformation</strong></p>
+<p><strong>从左到右</strong>，对每一列，对中间结果 G 进行操作，计算本列背景点与本行背景点距离平方和的最小值，得到距离图（Distance Map）H；</p>
+<p>如下图（4 即使最近距离的平方）.</p>
+<p><img data-src="/../img/SignedDistanceFiled/20150416180603781.bmp" alt="2-D Transformation"></p>
+<h2 id="8SSEDT-算法"><a href="#8SSEDT-算法" class="headerlink" title="8SSEDT 算法"></a>8SSEDT 算法</h2><p>Ref : <a target="_blank" rel="noopener" href="https://github.com/Lisapple/8SSEDT">https://github.com/Lisapple/8SSEDT</a></p>
+<h2 id="Dead-Reckoning-算法"><a href="#Dead-Reckoning-算法" class="headerlink" title="Dead Reckoning 算法"></a>Dead Reckoning 算法</h2><p>Ref : <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000041250697">https://segmentfault.com/a/1190000041250697</a></p>
+<h2 id="在Unity的實現"><a href="#在Unity的實現" class="headerlink" title="在Unity的實現"></a>在Unity的實現</h2><p>Ref : <a target="_blank" rel="noopener" href="https://zznewclear13.github.io/posts/calculate-signed-distance-field-using-compute-shader/">https://zznewclear13.github.io/posts/calculate-signed-distance-field-using-compute-shader/</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-22T23:34:33+08:00"
-              content="2022-04-22">
-          04-22
-        </time>
-      </div>
+  <div class="followme">
+    <p>歡迎關注我的其它發布渠道</p>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/22/cppFbx/" itemprop="url">
-            <span itemprop="name">Cpp搞FbxSDK的坑</span>
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
           </a>
-      </div>
-
-    </header>
-  </article>
-
+        </div>
     </div>
   </div>
-  
-  
-  
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SDF/" rel="tag"># SDF</a>
+              <a href="/tags/%E8%B7%9D%E9%9B%A2%E5%A0%B4/" rel="tag"># 距離場</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/26/GHS/" rel="prev" title="福利">
+      <i class="fa fa-chevron-left"></i> 福利
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -289,6 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E7%9A%84%E8%B7%9D%E9%9B%A2%E5%A0%B4%E7%AE%97%E6%B3%95%E8%88%87%E5%AF%A6%E7%8F%BE"><span class="nav-number">2.</span> <span class="nav-text">收集的距離場算法與實現</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E8%B7%9D%E7%A6%BB%E8%BD%AC%E6%8D%A2%EF%BC%88EDT%EF%BC%89%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">欧几里得距离转换（EDT）算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8SSEDT-%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">8SSEDT 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dead-Reckoning-%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">Dead Reckoning 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8Unity%E7%9A%84%E5%AF%A6%E7%8F%BE"><span class="nav-number">2.4.</span> <span class="nav-text">在Unity的實現</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
