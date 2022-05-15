@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>修复Windows 事件10016</title>
+      <link href="/2022/05/15/FixWindowDCOM/"/>
+      <url>/2022/05/15/FixWindowDCOM/</url>
+      
+        <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><span id="more"></span>   <p>因为Windows的一个阿三更新, 破坏了DCOM的权限设置</p><p>从而导致了PerAppRuntimeBroken的权限被破坏</p><hr><h1 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h1><ol><li><p>使用 <strong>Regedit</strong> 命令，转至 HKCR\Clsid*clsid value 注册表值。</p><p> <strong>注：</strong> 以非管理员用户身份配置查看时时，CLSID 值会以事件标识 10016 显示在事件查看器中。</p></li><li><p>在“注册表编辑器”窗格中，双击<strong>默认</strong>。</p></li><li><p>在“编辑字符串”对话框中，复制值数据字符串。</p></li><li><p>单击<strong>开始 &gt; 控制面板 &gt; 管理工具 &gt; 组件服务</strong>。</p></li><li><p>在“组件服务”窗口中，展开<strong>组件服务 &gt; 计算机 &gt; 我的电脑</strong>，并双击 <strong>DCOM</strong>。</p></li><li><p>在“DCOM 配置”窗格中，找到所复制的字符串（程序名），右键单击程序名，然后单击<strong>属性</strong>。</p></li><li><p>在“属性”窗口中，选择<strong>安全</strong>选项卡。</p></li><li><p>在“启动和激活权限”组框下，选择<strong>自定义</strong>，然后单击<strong>编辑</strong>。这将打开“启动和激活权限”窗口。</p></li><li><p>单击<strong>添加</strong>，输入非管理员用户到权限列表中，然后单击<strong>确定</strong>。</p></li><li><p>针对“本地启动”和“本地激活”选中<strong>允许</strong>复选框，然后单击<strong>确定</strong>。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 水 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 破事水 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>有向距離場 Signed Distance Filed</title>
       <link href="/2022/04/26/SignedDistanceFiled/"/>
       <url>/2022/04/26/SignedDistanceFiled/</url>

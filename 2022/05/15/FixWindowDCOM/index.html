@@ -21,17 +21,20 @@
     var CONFIG = {"hostname":"mine-clever.art","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="想到什麽寫什麽, 隨筆而已 Telegram-Channel https:&#x2F;&#x2F;t.me&#x2F;DarkMagicBio">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MineClever&#39;s Blog">
-<meta property="og:url" content="http://mine-clever.art/categories/GHS/index.html">
+  <meta name="description" content="摘要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修复Windows 事件10016">
+<meta property="og:url" content="http://mine-clever.art/2022/05/15/FixWindowDCOM/index.html">
 <meta property="og:site_name" content="MineClever&#39;s Blog">
-<meta property="og:description" content="想到什麽寫什麽, 隨筆而已 Telegram-Channel https:&#x2F;&#x2F;t.me&#x2F;DarkMagicBio">
+<meta property="og:description" content="摘要">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-05-15T04:49:26.000Z">
+<meta property="article:modified_time" content="2022-05-15T04:53:30.585Z">
 <meta property="article:author" content="Mine Clever">
+<meta property="article:tag" content="破事水">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://mine-clever.art/categories/GHS/">
+<link rel="canonical" href="http://mine-clever.art/2022/05/15/FixWindowDCOM/">
 
 
 <script id="page-configurations">
@@ -39,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>分類: GHS | MineClever's Blog</title>
+  <title>修复Windows 事件10016 | MineClever's Blog</title>
   
 
 
@@ -192,51 +195,137 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">GHS
-          <small>分類</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://mine-clever.art/2022/05/15/FixWindowDCOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/MyHeadIcon.jpg">
+      <meta itemprop="name" content="Mine Clever">
+      <meta itemprop="description" content="想到什麽寫什麽, 隨筆而已 Telegram-Channel https://t.me/DarkMagicBio">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MineClever's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          修复Windows 事件10016
+        </h1>
+
+        <div class="post-meta">
+          
+            
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-05-15 12:49:26 / 修改時間：12:53:30" itemprop="dateCreated datePublished" datetime="2022-05-15T12:49:26+08:00">2022-05-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">水</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><span id="more"></span>   
+
+<p>因为Windows的一个阿三更新, 破坏了DCOM的权限设置</p>
+<p>从而导致了PerAppRuntimeBroken的权限被破坏</p>
+<hr>
+<h1 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h1><ol>
+<li><p>使用 <strong>Regedit</strong> 命令，转至 HKCR\Clsid*clsid value 注册表值。</p>
+<p> <strong>注：</strong> 以非管理员用户身份配置查看时时，CLSID 值会以事件标识 10016 显示在事件查看器中。</p>
+</li>
+<li><p>在“注册表编辑器”窗格中，双击<strong>默认</strong>。</p>
+</li>
+<li><p>在“编辑字符串”对话框中，复制值数据字符串。</p>
+</li>
+<li><p>单击<strong>开始 &gt; 控制面板 &gt; 管理工具 &gt; 组件服务</strong>。</p>
+</li>
+<li><p>在“组件服务”窗口中，展开<strong>组件服务 &gt; 计算机 &gt; 我的电脑</strong>，并双击 <strong>DCOM</strong>。</p>
+</li>
+<li><p>在“DCOM 配置”窗格中，找到所复制的字符串（程序名），右键单击程序名，然后单击<strong>属性</strong>。</p>
+</li>
+<li><p>在“属性”窗口中，选择<strong>安全</strong>选项卡。</p>
+</li>
+<li><p>在“启动和激活权限”组框下，选择<strong>自定义</strong>，然后单击<strong>编辑</strong>。这将打开“启动和激活权限”窗口。</p>
+</li>
+<li><p>单击<strong>添加</strong>，输入非管理员用户到权限列表中，然后单击<strong>确定</strong>。</p>
+</li>
+<li><p>针对“本地启动”和“本地激活”选中<strong>允许</strong>复选框，然后单击<strong>确定</strong>。</p>
+</li>
+</ol>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-26T21:19:36+08:00"
-              content="2022-04-26">
-          04-26
-        </time>
-      </div>
+  <div class="followme">
+    <p>歡迎關注我的其它發布渠道</p>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/26/GHS/" itemprop="url">
-            <span itemprop="name">福利</span>
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
           </a>
-      </div>
-
-    </header>
-  </article>
-
+        </div>
     </div>
   </div>
-  
-  
-  
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A0%B4%E4%BA%8B%E6%B0%B4/" rel="tag"># 破事水</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/26/SignedDistanceFiled/" rel="prev" title="有向距離場 Signed Distance Filed">
+      <i class="fa fa-chevron-left"></i> 有向距離場 Signed Distance Filed
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -289,6 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.</span> <span class="nav-text">修复</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
