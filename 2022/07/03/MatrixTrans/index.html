@@ -21,19 +21,20 @@
     var CONFIG = {"hostname":"mine-clever.art","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="About MEWHOIS  Technical Artist Put Rotten One  Preferences  Art of every type  Technically Procedural behaviors  Nice look girls  Whoring  Format penmanship  Drawing  Photography  Colour Science  Dis">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://mine-clever.art/about/index.html">
+  <meta name="description" content="摘要一些矩阵处理的常用规则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵变换">
+<meta property="og:url" content="http://mine-clever.art/2022/07/03/MatrixTrans/index.html">
 <meta property="og:site_name" content="MineClever&#39;s Blog">
-<meta property="og:description" content="About MEWHOIS  Technical Artist Put Rotten One  Preferences  Art of every type  Technically Procedural behaviors  Nice look girls  Whoring  Format penmanship  Drawing  Photography  Colour Science  Dis">
+<meta property="og:description" content="摘要一些矩阵处理的常用规则">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2022-04-19T16:02:43.000Z">
-<meta property="article:modified_time" content="2022-04-23T04:26:26.687Z">
+<meta property="article:published_time" content="2022-07-02T18:08:16.000Z">
+<meta property="article:modified_time" content="2022-07-02T18:12:48.840Z">
 <meta property="article:author" content="Mine Clever">
+<meta property="article:tag" content="矩阵">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://mine-clever.art/about/">
+<link rel="canonical" href="http://mine-clever.art/2022/07/03/MatrixTrans/">
 
 
 <script id="page-configurations">
@@ -41,13 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>关于 | MineClever's Blog
-</title>
+  <title>矩阵变换 | MineClever's Blog</title>
   
 
 
@@ -194,73 +194,120 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-TW">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://mine-clever.art/2022/07/03/MatrixTrans/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/MyHeadIcon.jpg">
+      <meta itemprop="name" content="Mine Clever">
+      <meta itemprop="description" content="想到什麽寫什麽, 隨筆而已 Telegram t.me/DarkMagicBio">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MineClever's Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          矩阵变换
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">关于
-</h1>
+        <div class="post-meta">
+          
+            
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
 
-<div class="post-meta">
+              <time title="創建時間：2022-07-03 02:08:16 / 修改時間：02:12:48" itemprop="dateCreated datePublished" datetime="2022-07-03T02:08:16+08:00">2022-07-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">水</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>一些矩阵处理的常用规则</p>
+<span id="more"></span>  
+
+<h1 id="理解左乘和右乘"><a href="#理解左乘和右乘" class="headerlink" title="理解左乘和右乘"></a>理解左乘和右乘</h1><p>当三维坐标点发生旋转时，如果采用矩阵运算就会需要考虑“左乘”和“右乘”。</p>
+<p>若绕静坐标系（世界坐标系）旋转，则左乘，也是变换矩阵*坐标矩阵；</p>
+<p>若是绕动坐标系旋转（自身建立一个坐标系），则右乘，也就是坐标矩阵*变换矩阵。</p>
+<h1 id="视角"><a href="#视角" class="headerlink" title="视角"></a>视角</h1><p>总结来说, 这是个视角问题 , 右乘获取新坐标矩阵 , 左乘还是原来的坐标矩阵.</p>
+<p>类似于 旋转地图自身固定(右乘) 与 旋转自身地图固定(左乘) 的区别</p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">obj_local_matrix = obj_world_matrix * inverse_parent_world_matrix <span class="comment"># 右乘</span></span><br><span class="line">obj_world_matrix = obj_local_matrix * parent_world_matrix <span class="comment"># 左乘</span></span><br><span class="line"></span><br><span class="line">obj_relative_to_other_matrix = obj_world_matrix * inverse_other_world_matrix</span><br><span class="line">obj_world_matrix = obj_relative_to_other_matrix * other_world_matrix</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>歡迎關注我的其它發布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag"># 矩阵</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/14/UnrealUsefulApi/" rel="prev" title="实用 Unreal Engine API">
+      <i class="fa fa-chevron-left"></i> 实用 Unreal Engine API
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <h1 id="About-ME"><a href="#About-ME" class="headerlink" title="About ME"></a>About ME</h1><p>WHOIS</p>
-<ul>
-<li>Technical Artist</li>
-<li>Put Rotten One</li>
-</ul>
-<p>Preferences</p>
-<ul>
-<li><p>Art of every type</p>
-</li>
-<li><p>Technically Procedural behaviors</p>
-</li>
-<li><p>Nice look girls</p>
-</li>
-<li><p>Whoring</p>
-</li>
-<li><p>Format penmanship</p>
-</li>
-<li><p>Drawing</p>
-</li>
-<li><p>Photography</p>
-</li>
-<li><p>Colour Science</p>
-</li>
-<li><p>Distorted programming</p>
-</li>
-</ul>
-<p>什麽都會一點, 但絕對不是每個領域的專家</p>
-<p>反卷人員, 卷你🐎卷, 給不給別人留活口啊, 共產國際瞭解下啊</p>
-<p>反對散播焦慮 , 人多是平庸的 , 接受平庸 , 分享快樂 !</p>
-<p>散播焦慮的給我自覺把口球帶上!</p>
-
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -311,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About-ME"><span class="nav-number">1.</span> <span class="nav-text">About ME</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E5%B7%A6%E4%B9%98%E5%92%8C%E5%8F%B3%E4%B9%98"><span class="nav-number">2.</span> <span class="nav-text">理解左乘和右乘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%86%E8%A7%92"><span class="nav-number">3.</span> <span class="nav-text">视角</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">示例</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

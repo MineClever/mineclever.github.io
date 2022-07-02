@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>矩阵变换</title>
+      <link href="/2022/07/03/MatrixTrans/"/>
+      <url>/2022/07/03/MatrixTrans/</url>
+      
+        <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>一些矩阵处理的常用规则</p><span id="more"></span>  <h1 id="理解左乘和右乘"><a href="#理解左乘和右乘" class="headerlink" title="理解左乘和右乘"></a>理解左乘和右乘</h1><p>当三维坐标点发生旋转时，如果采用矩阵运算就会需要考虑“左乘”和“右乘”。</p><p>若绕静坐标系（世界坐标系）旋转，则左乘，也是变换矩阵*坐标矩阵；</p><p>若是绕动坐标系旋转（自身建立一个坐标系），则右乘，也就是坐标矩阵*变换矩阵。</p><h1 id="视角"><a href="#视角" class="headerlink" title="视角"></a>视角</h1><p>总结来说, 这是个视角问题 , 右乘获取新坐标矩阵 , 左乘还是原来的坐标矩阵.</p><p>类似于 旋转地图自身固定(右乘) 与 旋转自身地图固定(左乘) 的区别</p><h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">obj_local_matrix = obj_world_matrix * inverse_parent_world_matrix <span class="comment"># 右乘</span></span><br><span class="line">obj_world_matrix = obj_local_matrix * parent_world_matrix <span class="comment"># 左乘</span></span><br><span class="line"></span><br><span class="line">obj_relative_to_other_matrix = obj_world_matrix * inverse_other_world_matrix</span><br><span class="line">obj_world_matrix = obj_relative_to_other_matrix * other_world_matrix</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 水 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 矩阵 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>实用 Unreal Engine API</title>
       <link href="/2022/06/14/UnrealUsefulApi/"/>
       <url>/2022/06/14/UnrealUsefulApi/</url>
