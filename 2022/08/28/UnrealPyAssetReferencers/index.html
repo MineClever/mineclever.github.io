@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/fav_mine.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/fav_mine@0.5x.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/fav_mine@0.25x.png">
+  <link rel="mask-icon" href="/images/fav_mine.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mine-clever.art","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="摘要有时候从UE中找到所有关联资产非常不方便. 搞来搞去很麻烦. 找了个时间搞了个py脚本专门输出一个资产关联列表. 人生苦短, CV大法好.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unreal 获取关联资产名单代码片段">
+<meta property="og:url" content="http://mine-clever.art/2022/08/28/UnrealPyAssetReferencers/index.html">
+<meta property="og:site_name" content="MineClever&#39;s Blog">
+<meta property="og:description" content="摘要有时候从UE中找到所有关联资产非常不方便. 搞来搞去很麻烦. 找了个时间搞了个py脚本专门输出一个资产关联列表. 人生苦短, CV大法好.">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-08-28T09:08:58.000Z">
+<meta property="article:modified_time" content="2022-08-28T09:13:57.275Z">
+<meta property="article:author" content="Mine Clever">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="unreal">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://mine-clever.art/2022/08/28/UnrealPyAssetReferencers/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Unreal 获取关联资产名单代码片段 | MineClever's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="MineClever's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MineClever's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Some Technical Artist's Log</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-asterisk fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-flag fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-eye fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-database fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友鏈</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>🐎 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://mine-clever.art/2022/08/28/UnrealPyAssetReferencers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/MyHeadIcon.jpg">
+      <meta itemprop="name" content="Mine Clever">
+      <meta itemprop="description" content="想到什麽寫什麽, 隨筆而已 Telegram t.me/DarkMagicBio">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MineClever's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unreal 获取关联资产名单代码片段
+        </h1>
+
+        <div class="post-meta">
+          
+            
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2022-08-28 17:08:58 / 修改時間：17:13:57" itemprop="dateCreated datePublished" datetime="2022-08-28T17:08:58+08:00">2022-08-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">水</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>有时候从UE中找到所有关联资产非常不方便.</p>
+<p>搞来搞去很麻烦. 找了个时间搞了个py脚本专门输出一个资产关联列表.</p>
+<p>人生苦短, CV大法好.</p>
+<span id="more"></span>   
+
+<h1 id="Python-代码片段"><a href="#Python-代码片段" class="headerlink" title="Python 代码片段"></a>Python 代码片段</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment"># python=3.8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to find Unreal Project assets easily</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># How to Use ? Take a selection in AssetContentBrowser then run script with console.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> unreal <span class="keyword">as</span> unreal; ue = unreal</span><br><span class="line"><span class="keyword">import</span> subprocess <span class="keyword">as</span> subprocess</span><br><span class="line"><span class="keyword">import</span> os <span class="keyword">as</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Typing hint</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> typing</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> E:</span><br><span class="line">    <span class="built_in">print</span>(E)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">DoWinCopy</span>(<span class="params">inCopy:<span class="built_in">str</span></span>) :</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Copy to windows clipboard&quot;&quot;&quot;</span></span><br><span class="line">    subprocess.run([<span class="string">&#x27;clip.exe&#x27;</span>], <span class="built_in">input</span>=<span class="built_in">str</span>(inCopy).strip().encode(<span class="string">&#x27;utf-16&#x27;</span>), check=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SelectionHelper</span> (<span class="title class_ inherited__">object</span>) :</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Help to get current Selection @ World and @ Content&quot;&quot;&quot;</span></span><br><span class="line">    __projectContentPath = unreal.Paths.project_content_dir()</span><br><span class="line">    </span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetSelectedAssets</span> (cls) :</span><br><span class="line">        <span class="comment"># type: (...) -&gt; <span class="built_in">list</span>[ue.Object]</span></span><br><span class="line">        <span class="keyword">return</span> unreal.EditorUtilityLibrary.get_selected_assets()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetSelectedActors</span> (cls) :</span><br><span class="line">        <span class="comment"># type: (...) -&gt; <span class="built_in">list</span>[ue.Actor]</span></span><br><span class="line">        <span class="keyword">return</span> unreal.EditorLevelLibrary.get_selected_level_actors()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetFullPathByObject</span> (cls, inUObject: ue.Object) -&gt; <span class="built_in">str</span> :</span><br><span class="line">        <span class="keyword">return</span> unreal.SystemLibrary.get_path_name(inUObject)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ConvertPackagePathToFilePath</span> (cls, inPackagePath: <span class="built_in">str</span>) -&gt; <span class="built_in">str</span> :</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Convert &#x27;/Game/StarterContent/SomeName&#x27; to &#x27;Drive:/Project/Content/StarterContent/SomeName&#x27;&quot;&quot;&quot;</span></span><br><span class="line">        fileSysPath = os.path.join(cls.__projectContentPath,inPackagePath.replace(<span class="string">&quot;/Game/&quot;</span>,<span class="string">&quot;&quot;</span>))</span><br><span class="line">        <span class="keyword">return</span> fileSysPath</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ConvertFilePathToPackagePath</span> (cls, inFilePath: <span class="built_in">str</span>) -&gt; <span class="built_in">str</span> :</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Convert &#x27;Drive:/Project/Content/StarterContent/SomeName(.uasset)&#x27; to &#x27;/Game/StarterContent/SomeName&#x27;&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> inFilePath.replace(<span class="string">&quot;\\&quot;</span>,<span class="string">&quot;/&quot;</span>).replace(<span class="string">&quot;.uasset&quot;</span>,<span class="string">&quot;&quot;</span>).replace(cls.__projectContentPath,<span class="string">&quot;/Game/&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ReferenceHelper</span> (<span class="title class_ inherited__">object</span>):</span><br><span class="line">    __assetRegistryInstance: ue.AssetRegistry = unreal.AssetRegistryHelpers.get_asset_registry()</span><br><span class="line">    </span><br><span class="line">    __referenceOptions = unreal.AssetRegistryDependencyOptions()</span><br><span class="line">    __referenceOptions.include_hard_management_references = <span class="literal">True</span></span><br><span class="line">    __referenceOptions.include_hard_package_references = <span class="literal">True</span></span><br><span class="line">    __referenceOptions.include_soft_management_references = <span class="literal">True</span></span><br><span class="line">    __referenceOptions.include_soft_package_references = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetReferencersPathByPackagePath</span> (cls, inPackagePath: <span class="built_in">str</span>) :</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Ref to https://docs.unrealengine.com/4.27/en-US/PythonAPI/class/AssetRegistry.html&quot;&quot;&quot;</span></span><br><span class="line">        allReferencersPackage : <span class="built_in">list</span>[<span class="built_in">str</span>] = cls.__assetRegistryInstance.get_referencers(inPackagePath,cls.__referenceOptions)</span><br><span class="line">        <span class="keyword">return</span> allReferencersPackage</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetDependenciesPathByPackagePath</span> (cls, inPackagePath: <span class="built_in">str</span>) :</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Ref to https://docs.unrealengine.com/4.27/en-US/PythonAPI/class/AssetRegistry.html&quot;&quot;&quot;</span></span><br><span class="line">        allDependenciesPackage : <span class="built_in">list</span>[<span class="built_in">str</span>] = cls.__assetRegistryInstance.get_dependencies(inPackagePath,cls.__referenceOptions)</span><br><span class="line">        <span class="keyword">return</span> allDependenciesPackage</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetAllReferencersPathFromSelectedAssets</span> (cls) :</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Get all referenced assets path with current selection in AssetContent&quot;&quot;&quot;</span></span><br><span class="line">        assets = SelectionHelper.GetSelectedAssets()</span><br><span class="line">        assetPaths: <span class="built_in">set</span>[<span class="built_in">str</span>] = <span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">for</span> asset <span class="keyword">in</span> assets:</span><br><span class="line">            path = unreal.Paths.get_base_filename(asset.get_path_name(),remove_path=<span class="literal">False</span>)</span><br><span class="line">            assetPaths.add(path)</span><br><span class="line">            referencedPaths: <span class="built_in">list</span>[<span class="built_in">str</span>] = unreal.EditorAssetLibrary.find_package_referencers_for_asset(path)</span><br><span class="line">            assetPaths.update(referencedPaths)</span><br><span class="line">        <span class="keyword">return</span> assetPaths</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetAllDependenciesPath</span> (cls, assetArray , bDeep=<span class="literal">False</span>, maxDeep = <span class="number">10</span>) :</span><br><span class="line">        <span class="comment"># type: (typing.Iterable[ue.Object], <span class="built_in">bool</span> , <span class="built_in">int</span>) -&gt; <span class="built_in">set</span>[<span class="built_in">str</span>]</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;Get all referenced assets path with input array of assets object&quot;&quot;&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># <span class="doctag">NOTE:</span> set is more fast than list !</span></span><br><span class="line">        assetsPath: <span class="built_in">set</span>[<span class="built_in">str</span>] = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">        MakeValidPath: typing.<span class="type">Callable</span>[[<span class="built_in">list</span>[<span class="built_in">str</span>]], typing.Iterable[<span class="built_in">str</span>]] = \</span><br><span class="line">            <span class="keyword">lambda</span> inPaths : \</span><br><span class="line">                (<span class="built_in">str</span>(name) <span class="keyword">if</span> <span class="keyword">not</span> (<span class="built_in">str</span>(name).startswith(<span class="string">&quot;/Script/&quot;</span>) <span class="keyword">or</span> <span class="built_in">str</span>(name).startswith(<span class="string">&quot;/Engine/&quot;</span>)) <span class="keyword">else</span> <span class="literal">None</span> \</span><br><span class="line">                    <span class="keyword">for</span> name <span class="keyword">in</span> inPaths)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">DeepLoop</span> (inAssets: <span class="built_in">str</span>, deepCount=<span class="number">0</span>):</span><br><span class="line">            <span class="string">&quot;&quot;&quot;recursion to find all paths&quot;&quot;&quot;</span></span><br><span class="line">            <span class="keyword">if</span> deepCount &gt; maxDeep: <span class="keyword">return</span></span><br><span class="line">            deepCount+=<span class="number">1</span></span><br><span class="line">            insideAssetsPath:<span class="built_in">set</span>[<span class="built_in">str</span>] = <span class="built_in">set</span>()</span><br><span class="line">            insideDependenciesPath: <span class="built_in">list</span>[<span class="built_in">str</span>] = cls.GetDependenciesPathByPackagePath(inAssets)</span><br><span class="line">            insideAssetsPath.update(MakeValidPath (insideDependenciesPath))</span><br><span class="line">            insideAssetsPath.add(inAssets)</span><br><span class="line">            insideAssetsPath.discard(<span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># <span class="doctag">NOTE:</span> Find Path not in assetsPath</span></span><br><span class="line">            <span class="keyword">for</span> diffAssetsPath <span class="keyword">in</span> insideAssetsPath:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> diffAssetsPath <span class="keyword">in</span> assetsPath:</span><br><span class="line">                    assetsPath.add(diffAssetsPath)</span><br><span class="line">                    DeepLoop(diffAssetsPath,deepCount)</span><br><span class="line">            assetsPath.update(insideAssetsPath)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> asset <span class="keyword">in</span> assetArray:</span><br><span class="line">            path = unreal.Paths.get_base_filename(asset.get_path_name(),remove_path=<span class="literal">False</span>)</span><br><span class="line">            DependenciesPath: <span class="built_in">list</span>[<span class="built_in">str</span>] = cls.GetDependenciesPathByPackagePath(path)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(DependenciesPath, <span class="built_in">type</span>(<span class="literal">None</span>)):</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># <span class="doctag">NOTE:</span> remove all script path</span></span><br><span class="line">            assetsPath.update(MakeValidPath(DependenciesPath))</span><br><span class="line">            assetsPath.add(path)</span><br><span class="line">            assetsPath.discard(<span class="literal">None</span>)</span><br><span class="line">            <span class="keyword">if</span> bDeep:</span><br><span class="line">                <span class="keyword">for</span> subAsset <span class="keyword">in</span> assetsPath.copy():</span><br><span class="line">                    DeepLoop(subAsset)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> assetsPath</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetAllDependenciesPathFromSelectedAssets</span> (cls, bDeep=<span class="literal">False</span>, maxDeep = <span class="number">10</span>) :</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Get all referenced assets path with current selection in AssetContent&quot;&quot;&quot;</span></span><br><span class="line">        assets = SelectionHelper.GetSelectedAssets()</span><br><span class="line">        <span class="keyword">return</span> cls.GetAllDependenciesPath(assets, bDeep, maxDeep)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetAllDependenciesPathFromSelectedMeshActors</span> (cls, bDeep=<span class="literal">False</span>, maxDeep = <span class="number">10</span>) :</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Get all referenced assets path with current selection in AssetContent&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        assets: <span class="built_in">set</span>[ue.Object] = <span class="built_in">set</span>()</span><br><span class="line">        allActors = SelectionHelper.GetSelectedActors()</span><br><span class="line">        <span class="keyword">for</span> actor <span class="keyword">in</span> allActors:</span><br><span class="line">            staticMeshComponents: <span class="built_in">list</span>[ue.StaticMeshComponent] = actor.get_components_by_class(ue.StaticMeshComponent)</span><br><span class="line">            skeletalMeshComponents: <span class="built_in">list</span>[ue.SkeletalMeshComponent]  = actor.get_components_by_class(ue.SkeletalMeshComponent)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(staticMeshComponents) &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">for</span> comp <span class="keyword">in</span> staticMeshComponents:</span><br><span class="line">                    assets.add(comp.static_mesh)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(skeletalMeshComponents) &gt;<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">for</span> comp <span class="keyword">in</span> skeletalMeshComponents:</span><br><span class="line">                    assets.add(comp.skeletal_mesh)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cls.GetAllDependenciesPath(assets, bDeep, maxDeep)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">RunScript</span>(<span class="params">bViewActor=<span class="literal">True</span>,bDoCopy=<span class="literal">True</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Choose from current ViewportActors or Assets in ContentBrowser&quot;&quot;&quot;</span></span><br><span class="line">    method = ReferenceHelper.GetAllDependenciesPathFromSelectedMeshActors \</span><br><span class="line">        <span class="keyword">if</span> bViewActor <span class="keyword">else</span> ReferenceHelper.GetAllDependenciesPathFromSelectedAssets</span><br><span class="line">    result = <span class="built_in">list</span>(method(bDeep=<span class="literal">True</span>,maxDeep=<span class="number">10</span>));result.sort()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># <span class="doctag">NOTE:</span> Make ContentBrowser sync with current result list </span></span><br><span class="line">    unreal.EditorAssetLibrary.sync_browser_to_objects(result)</span><br><span class="line">    <span class="comment"># for strName in result : print(strName)</span></span><br><span class="line">    <span class="keyword">if</span> bDoCopy: DoWinCopy(result)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    RunScript(bViewActor=<span class="literal">True</span>,bDoCopy=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>歡迎關注我的其它發布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/unreal/" rel="tag"># unreal</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/20/PyCodeToTraversePaths/" rel="prev" title="找文件用的Python代码片段">
+      <i class="fa fa-chevron-left"></i> 找文件用的Python代码片段
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5"><span class="nav-number">2.</span> <span class="nav-text">Python 代码片段</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mine Clever"
+      src="/images/MyHeadIcon.jpg">
+  <p class="site-author-name" itemprop="name">Mine Clever</p>
+  <div class="site-description" itemprop="description">想到什麽寫什麽, 隨筆而已 Telegram t.me/DarkMagicBio</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine Clever</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
