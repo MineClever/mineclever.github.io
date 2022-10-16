@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>用Python加载Unreal蓝图</title>
+      <link href="/2022/10/16/LoadUnrealBpByPython/"/>
+      <url>/2022/10/16/LoadUnrealBpByPython/</url>
+      
+        <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><span id="more"></span>   <p>用Python加载Unreal蓝图</p><h1 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bp_class_object_path = <span class="string">&#x27;&#123;&#125;_C&#x27;</span>.<span class="built_in">format</span>(asset.object_path)</span><br><span class="line"><span class="comment">#this is the slow bit as it has to load the object</span></span><br><span class="line">bp_gen_object = unreal.load_asset(bp_class_object_path) </span><br><span class="line">blueprint_class_default = unreal.get_default_object(bp_gen_object)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 水 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 破事水 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Unreal 获取关联资产名单代码片段</title>
       <link href="/2022/08/28/UnrealPyAssetReferencers/"/>
       <url>/2022/08/28/UnrealPyAssetReferencers/</url>
@@ -20,9 +45,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> unreal </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
