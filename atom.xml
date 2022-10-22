@@ -6,7 +6,7 @@
   <link href="http://mine-clever.art/atom.xml" rel="self"/>
   
   <link href="http://mine-clever.art/"/>
-  <updated>2022-10-16T10:43:29.597Z</updated>
+  <updated>2022-10-22T06:30:29.416Z</updated>
   <id>http://mine-clever.art/</id>
   
   <author>
@@ -21,12 +21,12 @@
     <link href="http://mine-clever.art/2022/10/16/LoadUnrealBpByPython/"/>
     <id>http://mine-clever.art/2022/10/16/LoadUnrealBpByPython/</id>
     <published>2022-10-16T10:42:32.000Z</published>
-    <updated>2022-10-16T10:43:29.597Z</updated>
+    <updated>2022-10-22T06:30:29.416Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><span id="more"></span>   <p>用Python加载Unreal蓝图</p><h1 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bp_class_object_path = <span class="string">&#x27;&#123;&#125;_C&#x27;</span>.<span class="built_in">format</span>(asset.object_path)</span><br><span class="line"><span class="comment">#this is the slow bit as it has to load the object</span></span><br><span class="line">bp_gen_object = unreal.load_asset(bp_class_object_path) </span><br><span class="line">blueprint_class_default = unreal.get_default_object(bp_gen_object)</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>用Python加载Unreal蓝图</p><span id="more"></span>   <h1 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bp_class_object_path = <span class="string">&#x27;&#123;&#125;_C&#x27;</span>.<span class="built_in">format</span>(asset.object_path)</span><br><span class="line"><span class="comment">#this is the slow bit as it has to load the object</span></span><br><span class="line">bp_gen_object = unreal.load_asset(bp_class_object_path) </span><br><span class="line">blueprint_class_default = unreal.get_default_object(bp_gen_object)</span><br></pre></td></tr></table></figure>]]></content>
     
     
-    <summary type="html">&lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;用Python加载Unreal蓝图&lt;/p&gt;</summary>
     
     
     
@@ -56,9 +56,9 @@
     <category term="水" scheme="http://mine-clever.art/categories/%E6%B0%B4/"/>
     
     
-    <category term="unreal" scheme="http://mine-clever.art/tags/unreal/"/>
-    
     <category term="python" scheme="http://mine-clever.art/tags/python/"/>
+    
+    <category term="unreal" scheme="http://mine-clever.art/tags/unreal/"/>
     
   </entry>
   
