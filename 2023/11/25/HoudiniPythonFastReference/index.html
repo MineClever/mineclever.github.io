@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/fav_mine.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/fav_mine@0.5x.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/fav_mine@0.25x.png">
+  <link rel="mask-icon" href="/images/fav_mine.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mine-clever.art","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="摘要Houdini的Python耦合性比较高, 有些方法没有那么自觉. 放几个简单案例用来快速开始使用~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Houdini Python 快速开始">
+<meta property="og:url" content="http://mine-clever.art/2023/11/25/HoudiniPythonFastReference/index.html">
+<meta property="og:site_name" content="MineClever&#39;s Blog">
+<meta property="og:description" content="摘要Houdini的Python耦合性比较高, 有些方法没有那么自觉. 放几个简单案例用来快速开始使用~">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-11-25T10:07:52.000Z">
+<meta property="article:modified_time" content="2023-11-25T10:10:34.897Z">
+<meta property="article:author" content="Mine Clever">
+<meta property="article:tag" content="Houdini">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://mine-clever.art/2023/11/25/HoudiniPythonFastReference/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Houdini Python 快速开始 | MineClever's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="MineClever's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MineClever's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Some Technical Artist's Log</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-asterisk fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-flag fa-fw"></i>關於</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-eye fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-database fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友鏈</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>🐎 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://mine-clever.art/2023/11/25/HoudiniPythonFastReference/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/MyHeadIcon.jpg">
+      <meta itemprop="name" content="Mine Clever">
+      <meta itemprop="description" content="想到什麽寫什麽, 隨筆而已 Telegram t.me/DarkMagicBio">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MineClever's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Houdini Python 快速开始
+        </h1>
+
+        <div class="post-meta">
+          
+            
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2023-11-25 18:07:52 / 修改時間：18:10:34" itemprop="dateCreated datePublished" datetime="2023-11-25T18:07:52+08:00">2023-11-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Houdini/" itemprop="url" rel="index"><span itemprop="name">Houdini</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>Houdini的Python耦合性比较高, 有些方法没有那么自觉.</p>
+<p>放几个简单案例用来快速开始使用~</p>
+<span id="more"></span>   
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> hou</span><br><span class="line"><span class="comment">#############################################</span></span><br><span class="line"><span class="comment"># 获取与设置节点属性</span></span><br><span class="line"><span class="comment">#############################################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_and_set_node_parameters</span>(<span class="params">node_name=<span class="string">&quot;&quot;</span></span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n------------\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Start Create!\n&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    current_root_node = hou.node(<span class="string">&quot;/obj&quot;</span>)<span class="comment"># type: hou.Node</span></span><br><span class="line">    geo_node = current_root_node.createNode(<span class="string">&quot;geo&quot;</span>) <span class="comment">#type: hou.ObjNode</span></span><br><span class="line">    <span class="keyword">if</span> node_name:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hou.node(<span class="string">&quot;&#123;&#125;/&#123;&#125;&quot;</span>.<span class="built_in">format</span>(current_root_node.path(), node_name)):</span><br><span class="line">            geo_node.setName(node_name)</span><br><span class="line">    geo_node.setSelected(<span class="literal">True</span>, clear_all_selected=<span class="literal">True</span>) <span class="comment">#替换选择</span></span><br><span class="line">    <span class="comment"># <span class="doctag">NOTE:</span> 在此节点下创建其它节点, 不需要选中, 以上选中仅用于测试.</span></span><br><span class="line">    <span class="comment"># <span class="doctag">NOTE:</span> run_init_scripts的作用主要是在Geometry中内置一个File SOP</span></span><br><span class="line">    <span class="comment">#       如果设置为了False就不会做这个事情了</span></span><br><span class="line">    <span class="comment">#       除此以外还有一些渲染相关的参数也不会被加到Geometry中</span></span><br><span class="line">    box_node = geo_node.createNode(<span class="string">&quot;box&quot;</span>, run_init_scripts=<span class="literal">False</span>) <span class="comment"># type: hou.SopNode</span></span><br><span class="line">    box_node.moveToGoodPosition()</span><br><span class="line">    <span class="comment"># 细分节点</span></span><br><span class="line">    subd_node = geo_node.createNode(<span class="string">&quot;subdivide&quot;</span>, run_init_scripts=<span class="literal">False</span>)<span class="comment"># type: hou.SopNode</span></span><br><span class="line">    <span class="comment"># <span class="doctag">NOTE:</span> 设置生成节点的参数</span></span><br><span class="line">    iteration_parm = subd_node.parm(<span class="string">&quot;iterations&quot;</span>) <span class="comment"># type: hou.Parm</span></span><br><span class="line">    <span class="keyword">if</span> iteration_parm:</span><br><span class="line">        iteration_parm.<span class="built_in">set</span>(<span class="number">3</span>)</span><br><span class="line">    subd_node.setInput(<span class="number">0</span>, box_node)</span><br><span class="line">    subd_node.moveToGoodPosition() <span class="comment"># 自动设置在Houdini 中的 layout</span></span><br><span class="line">    subd_node.setDisplayFlag(<span class="literal">True</span>)</span><br><span class="line">    subd_node.setRenderFlag(<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n------------\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Sub node count under &#123;&#125;:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(geo_node.path(), geo_node.numItems()))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 参数获取</span></span><br><span class="line">    box_tx_ch = hou.ch(<span class="string">&quot;&#123;&#125;/tx&quot;</span>.<span class="built_in">format</span>(box_node.path()))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;box_tx type: &#123;&#125; val: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">type</span>(box_tx_ch),box_tx_ch))</span><br><span class="line">    box_scale = box_node.parm(<span class="string">&quot;scale&quot;</span>) <span class="comment">#type: hou.Parm</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;box_scale type: &#123;&#125; val: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">type</span>(box_scale), box_scale.<span class="built_in">eval</span>()))</span><br><span class="line">    <span class="comment"># 复数参数</span></span><br><span class="line">    box_divs = box_node.parmTuple(<span class="string">&quot;divs&quot;</span>) <span class="comment"># type: hou.ParmTuple</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;box_divs type: &#123;&#125; val: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">type</span>(box_divs), box_divs.<span class="built_in">eval</span>()))</span><br><span class="line">    box_parms_list =box_node.parms() <span class="comment"># type: <span class="built_in">tuple</span>[hou.Parm]</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n------------\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(box_parms_list)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n------------\n&quot;</span>)</span><br><span class="line">    box_parm_tuples = box_node.parmTuples() <span class="comment">#type: tuple[hou.ParmTuple]</span></span><br><span class="line">    <span class="built_in">print</span>(box_parm_tuples)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n------------\n&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># <span class="doctag">NOTE:</span></span></span><br><span class="line">    <span class="comment"># ParmTuple -&gt; size : tuple[Parm]</span></span><br><span class="line">    <span class="comment"># Parm -&gt; sizex, sizey, sizez : Parm</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 参数设置</span></span><br><span class="line">    box_node.parm(<span class="string">&quot;tx&quot;</span>).<span class="built_in">set</span>(box_tx_ch + <span class="number">0.5</span>)</span><br><span class="line">    box_node.parmTuple(<span class="string">&quot;size&quot;</span>).<span class="built_in">set</span>([<span class="number">0.5</span>,<span class="number">0.5</span>,<span class="number">0.5</span>])</span><br><span class="line">    box_scale.<span class="built_in">set</span>(<span class="number">2</span>)</span><br><span class="line">    box_divs.<span class="built_in">set</span>([<span class="number">0</span>,<span class="number">10</span>,<span class="number">0</span>])</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment"># eval 用于返回表达式值</span></span><br><span class="line">    <span class="comment"># houdini的设置属性，一般都是set</span></span><br><span class="line">    <span class="comment"># 但是如果想获取到属性值，就必须得用eval，他没有对应的get函数，这个和平常不太一样</span></span><br><span class="line">    val_box_div_a = box_divs.<span class="built_in">eval</span>()</span><br><span class="line">    val_box_div_b = box_node.evalParmTuple(<span class="string">&quot;divs&quot;</span>)</span><br><span class="line">    val_geo_tx_a = geo_node.evalParm(<span class="string">&quot;tx&quot;</span>)</span><br><span class="line">    val_geo_tx_b = geo_node.parm(<span class="string">&quot;tx&quot;</span>).<span class="built_in">eval</span>()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;divs:&#123;&#125;, divs:&#123;&#125;, tx:&#123;&#125;, tx:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(val_box_div_a, val_box_div_b, val_geo_tx_a, val_geo_tx_b))</span><br><span class="line"></span><br><span class="line">    geo_node.moveToGoodPosition()</span><br><span class="line"></span><br><span class="line">get_and_set_node_parameters(<span class="string">&quot;TestNode&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#############################################</span></span><br><span class="line"><span class="comment"># 从节点反向生成代码</span></span><br><span class="line"><span class="comment">#############################################</span></span><br><span class="line"><span class="comment"># ref: https://elmagnifico.tech/2023/04/21/Houdini-GeometrySpreadsheet/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_code_from_object</span> ():</span><br><span class="line">    </span><br><span class="line">    current_root_node = hou.node(<span class="string">&quot;/obj&quot;</span>)<span class="comment"># type: hou.Node</span></span><br><span class="line">    geo_node = current_root_node.createNode(<span class="string">&quot;geo&quot;</span>) <span class="comment">#type: hou.ObjNode</span></span><br><span class="line">    box_node = geo_node.createNode(<span class="string">&quot;box&quot;</span>, run_init_scripts=<span class="literal">False</span>) <span class="comment"># type: hou.SopNode</span></span><br><span class="line">    geo_node.setSelected(<span class="literal">True</span>, clear_all_selected=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># print(hou.node(&quot;/obj/box1&quot;).asCode())</span></span><br><span class="line">    <span class="built_in">print</span>(box_node.asCode())</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>歡迎關注我的其它發布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Houdini/" rel="tag"># Houdini</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/11/03/CreateQtWinInUnreal/" rel="prev" title="Unreal中使用Pyside2">
+      <i class="fa fa-chevron-left"></i> Unreal中使用Pyside2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mine Clever"
+      src="/images/MyHeadIcon.jpg">
+  <p class="site-author-name" itemprop="name">Mine Clever</p>
+  <div class="site-description" itemprop="description">想到什麽寫什麽, 隨筆而已 Telegram t.me/DarkMagicBio</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mine Clever</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
